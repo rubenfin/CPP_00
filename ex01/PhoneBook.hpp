@@ -6,52 +6,18 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/18 10:01:33 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/03/19 10:11:16 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/03/19 16:20:15 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PHONEBOOK_HPP	
+#define PHONEBOOK_HPP
+
 #include <cctype>
+#include <iomanip>
 #include <iostream>
-
-class Contacts
-{
-  private:
-	int ContactNumber;
-	std::string ContactName;
-
-  public:
-	Contacts(void);
-	~Contacts();
-	void SetContact(int number, std::string name);
-	Contacts GetContact(Contacts contacts);
-	int getNum() const
-	{
-		return (ContactNumber);
-	}
-	std::string getName() const
-	{
-		return (ContactName);
-	}
-};
-
-void Contacts::SetContact(int number, std::string name)
-{
-	this->ContactNumber = number;
-	this->ContactName = name;
-}
-
-Contacts Contacts::GetContact(Contacts contacts)
-{
-	return (contacts);
-}
-
-Contacts::Contacts() : ContactNumber(0), ContactName("")
-{
-}
-
-Contacts::~Contacts()
-{
-}
+#include <limits>
+#include "Contacts.hpp"
 
 class PhoneBook
 {
@@ -60,15 +26,19 @@ class PhoneBook
 	int numContacts;
 
   public:
-	PhoneBook(void);
+	PhoneBook();
 	~PhoneBook();
-	void addPhoneBookContact(int number, std::string name);
+	void addPhoneBookContact(std::string first_name, std::string last_name,
+		std::string nickname, std::string darkest_secret, std::string number);
 	Contacts getPhoneBookContact(int index);
+	int getNumContacts()
+	{
+		return (numContacts);
+	}
 };
 
-PhoneBook::PhoneBook(void)
+PhoneBook::PhoneBook() : numContacts(0)
 {
-	numContacts = 0;
 }
 
 Contacts PhoneBook::getPhoneBookContact(int index)
@@ -81,15 +51,24 @@ Contacts PhoneBook::getPhoneBookContact(int index)
 		return (Contacts());
 }
 
-void PhoneBook::addPhoneBookContact(int number, std::string name)
+void PhoneBook::addPhoneBookContact(std::string first_name, std::string last_name,
+	std::string nickname, std::string number, std::string darkest_secret)
 {
 	if (numContacts < 8)
 	{
-		contacts[numContacts].SetContact(number, name);
+		contacts[numContacts].SetContact(first_name, last_name, nickname,
+			number, darkest_secret);
 		numContacts++;
+	}
+	else
+	{
+		numContacts = 0;
+		PhoneBook::addPhoneBookContact(first_name, last_name, nickname,
+			number, darkest_secret);
 	}
 }
 
 PhoneBook::~PhoneBook()
 {
 }
+#endif
