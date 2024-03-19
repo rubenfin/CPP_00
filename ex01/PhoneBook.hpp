@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/18 10:01:33 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/03/18 17:19:59 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/03/19 10:11:16 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,16 @@ class Contacts
 	~Contacts();
 	void SetContact(int number, std::string name);
 	Contacts GetContact(Contacts contacts);
-	std::string GetName(std::string &name);
+	int getNum() const
+	{
+		return (ContactNumber);
+	}
+	std::string getName() const
+	{
+		return (ContactName);
+	}
 };
-std::string GetName()
-{
-	return (ContactName);
-}
+
 void Contacts::SetContact(int number, std::string name)
 {
 	this->ContactNumber = number;
@@ -79,10 +83,10 @@ Contacts PhoneBook::getPhoneBookContact(int index)
 
 void PhoneBook::addPhoneBookContact(int number, std::string name)
 {
-	if (this->numContacts < 8)
+	if (numContacts < 8)
 	{
 		contacts[numContacts].SetContact(number, name);
-		this->numContacts++;
+		numContacts++;
 	}
 }
 

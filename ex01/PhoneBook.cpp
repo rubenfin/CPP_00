@@ -1,21 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   PhoneBook.cpp                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/03/18 10:01:22 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/03/18 17:19:45 by rfinneru      ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "PhoneBook.hpp"
 
-void	DirectInput(PhoneBook MyPhoneBook, std::string input)
+void	DirectInput(PhoneBook *MyPhoneBook, std::string input)
 {
-	int			num;
 	Contacts	contacts;
+	int			num;
 
 	std::string name;
 	if (input == "ADD")
@@ -24,18 +12,15 @@ void	DirectInput(PhoneBook MyPhoneBook, std::string input)
 		std::cin >> name;
 		std::cout << "number?" << std::endl;
 		std::cin >> num;
-		MyPhoneBook.addPhoneBookContact(num, name);
-		for (size_t i = 0; i < 8; i++)
-		{
-            contacts = MyPhoneBook.getPhoneBookContact(i);
-			std::cout << GetName(contacts) << std::endl;
-		}
+		(*MyPhoneBook).addPhoneBookContact(num, name);
 	}
 	else if (input == "SEARCH")
 	{
-	}
-	else if (input == "EXIT")
-	{
+		for (size_t i = 0; i < 8; i++)
+		{
+			contacts = (*MyPhoneBook).getPhoneBookContact(i);
+			std::cout << contacts.getName() << "\n" << contacts.getNum() << "\n" << std::endl;
+		}
 	}
 	else
 		std::cout << "Wrong input, please try again!" << std::endl;
@@ -50,9 +35,9 @@ int	main(void)
 	{
 		std::cout << "Welcome to your PhoneBook!\nwould you like to ADD | SEARCH | EXIT" << std::endl;
 		std::cin >> input;
-		if (std::cin.eof())
+		if (std::cin.eof() || input == "EXIT")
 			break ;
-		DirectInput(MyPhoneBook, input);
+		DirectInput(&MyPhoneBook, input);
 		std::cin.clear();
 		fflush(stdin);
 	}
