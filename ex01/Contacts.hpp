@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/19 15:49:39 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/03/19 16:12:15 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/03/20 16:00:07 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,23 @@ class Contacts
 	Contacts(void);
 	~Contacts();
 	void SetContact(std::string first_name, std::string last_name,
-	std::string nickname, std::string number, std::string darkest_secret);
+		std::string nickname, std::string number, std::string darkest_secret);
 	Contacts GetContact(Contacts contacts);
+	std::string getFirstName() const
+	{
+		return (first_name);
+	}
+		std::string getLastName() const
+	{
+		return (last_name);
+	}
+		std::string getNickName() const
+	{
+		return (nickname);
+	}
 	std::string getNum() const
 	{
 		return (number);
-	}
-	std::string getName() const
-	{
-		return (first_name);
 	}
 };
 
@@ -48,11 +56,6 @@ void Contacts::SetContact(std::string first_name, std::string last_name,
 	this->nickname = nickname;
 	this->number = number;
 	this->darkest_secret = darkest_secret;
-}
-
-Contacts Contacts::GetContact(Contacts contacts)
-{
-	return (contacts);
 }
 
 Contacts::Contacts()

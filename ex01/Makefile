@@ -1,5 +1,5 @@
 CC = c++
-CFLAGS = -g -Wall -Wextra -Werror 
+CFLAGS =  -Wall -Wextra -Werror -g
 
 TARGET= PhoneBook
 

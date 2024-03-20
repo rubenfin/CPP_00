@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/18 09:39:30 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/03/18 17:08:18 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/03/20 14:03:47 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	main(int ac, char **av)
 		{
 			for (size_t j = 0; av[i][j]; j++)
 				std::cout << static_cast<char>(std::toupper(av[i][j]));
-			std::cout << " ";
 		}
 	}
 	else

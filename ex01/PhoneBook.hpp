@@ -6,23 +6,26 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/18 10:01:33 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/03/19 16:20:15 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/03/20 16:00:35 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP	
-#define PHONEBOOK_HPP
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
-#include <cctype>
-#include <iomanip>
-#include <iostream>
-#include <limits>
-#include "Contacts.hpp"
+
+# include <cctype>
+# include <iomanip>
+# include <iostream>
+# include <limits>
+# include "Contacts.hpp"
+
+#define CONTACT_NUM 2
 
 class PhoneBook
 {
   private:
-	Contacts contacts[8];
+	Contacts contacts[CONTACT_NUM];
 	int numContacts;
 
   public:
@@ -51,10 +54,11 @@ Contacts PhoneBook::getPhoneBookContact(int index)
 		return (Contacts());
 }
 
-void PhoneBook::addPhoneBookContact(std::string first_name, std::string last_name,
-	std::string nickname, std::string number, std::string darkest_secret)
+void PhoneBook::addPhoneBookContact(std::string first_name,
+	std::string last_name, std::string nickname, std::string number,
+	std::string darkest_secret)
 {
-	if (numContacts < 8)
+	if (numContacts < CONTACT_NUM)
 	{
 		contacts[numContacts].SetContact(first_name, last_name, nickname,
 			number, darkest_secret);
@@ -62,9 +66,12 @@ void PhoneBook::addPhoneBookContact(std::string first_name, std::string last_nam
 	}
 	else
 	{
-		numContacts = 0;
-		PhoneBook::addPhoneBookContact(first_name, last_name, nickname,
-			number, darkest_secret);
+		for (int i = 0; i < CONTACT_NUM - 1; ++i)
+		{
+			contacts[i] = contacts[i + 1];
+		}
+		contacts[CONTACT_NUM - 1].SetContact(first_name, last_name, nickname, number,
+			darkest_secret);
 	}
 }
 
