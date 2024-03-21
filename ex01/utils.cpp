@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 13:15:55 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/03/21 13:15:57 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/03/21 15:05:18 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ bool	findOnlySpace(const std::string &str)
 bool	findNum(const std::string &str)
 {
 	std::string::const_iterator iterator = str.begin();
-	while (iterator != str.end() && std::isalpha(*iterator))
+	while (iterator != str.end() && (std::isalpha(*iterator) || *iterator == ' ' || *iterator == '-'))
 		iterator++;
 	return (!str.empty() && iterator == str.end());
 }

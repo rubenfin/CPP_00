@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 12:31:22 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/03/21 14:51:23 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/03/21 15:24:41 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ Account::Account(void)
 
 Account::Account(int initial_deposit)
 {
-	Account::_amount = initial_deposit;
-	Account::_totalAmount += initial_deposit;
+	this->_amount = initial_deposit;
+	this->_totalAmount += initial_deposit;
 	_displayTimestamp();
 	std::cout << "index:" << getNbAccounts() << ";amount:" << checkAmount() << ";created" << std::endl;
-	Account::_accountIndex = this->_nbAccounts;
+	this->_accountIndex = this->_nbAccounts;
 	this->_nbAccounts++;
 }
 Account::~Account(void)

@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 13:16:26 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/03/21 14:42:04 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/03/21 15:19:54 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,32 +154,39 @@ void	DirectInput(PhoneBook *MyPhoneBook, std::string input)
 	else if (input == "SEARCH")
 		doSearch(MyPhoneBook);
 	else if (input == "HELP")
-		std::cout << "ADD | SEARCH | EXIT" << std::endl;
+		std::cout << "remember you can do, ADD, SEARCH or EXIT!" << std::endl;
 	else
 		std::cout << "Wrong input, please try again!" << std::endl;
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	PhoneBook	MyPhoneBook;
 
 	std::string input;
-	std::cout << "Welcome to your PhoneBook!\nwould you like to ADD | SEARCH | EXIT" << std::endl;
-	while (1 && !std::cin.eof())
+	(void)av;
+	if (ac == 1)
 	{
-		std::cout << "~ PhoneBook $: ";
-		std::getline(std::cin, input);
-		if (std::cin.eof())
+		std::cout << "Welcome to your PhoneBook!\nwould you like to ADD | SEARCH | EXIT" << std::endl;
+		while (1 && !std::cin.eof())
 		{
-			std::cout << "\n";
-			break ;
+			std::cout << "~ PhoneBook $: ";
+			std::getline(std::cin, input);
+			if (std::cin.eof())
+			{
+				std::cout << "\n";
+				break ;
+			}
+			if (input == "")
+				continue ;
+			if (input == "EXIT")
+				break ;
+			DirectInput(&MyPhoneBook, input);
 		}
-		if (input == "")
-			continue ;
-		if (input == "EXIT")
-			break ;
-		DirectInput(&MyPhoneBook, input);
+		std::cout << "You closed your PhoneBook,thanks for using and see you soon!" << std::endl;
+		return(0);
 	}
-	std::cout << "You closed your PhoneBook,thanks for using and see you soon!" << std::endl;
-	return (0);
+	else
+		std::cout << "usage: ./PhoneBook" << std::endl;
+	return (1);
 }
