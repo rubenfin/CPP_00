@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 SRCS = $(wildcard *.cpp) 
 OBJS = $(patsubst %.cpp,obj/%.o,$(SRCS))
 
-TARGET = PhoneBook
+TARGET = Account
 
 all: $(TARGET)
 
