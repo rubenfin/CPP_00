@@ -6,11 +6,13 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 12:31:22 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/03/21 15:24:41 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/03/21 15:50:39 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
+#include <chrono>
+#include <ctime>
 #include <iostream>
 
 int Account::_nbAccounts = 0;
@@ -31,6 +33,7 @@ Account::Account(int initial_deposit)
 	this->_accountIndex = this->_nbAccounts;
 	this->_nbAccounts++;
 }
+
 Account::~Account(void)
 {
 	_displayTimestamp();
@@ -47,17 +50,27 @@ int Account::getTotalAmount(void)
 {
 	return (_totalAmount);
 }
+
 int Account::getNbDeposits(void)
 {
 	return (_totalNbDeposits);
 }
+
 int Account::getNbWithdrawals(void)
 {
 	return (_totalNbWithdrawals);
 }
+
 void Account::_displayTimestamp(void)
 {
-	std::cout << "[19920104_091532] ";
+	char	buffer[80];
+
+	std::time_t timeSinceEpoch;
+	std::tm *formattedTime;
+	std::time(&timeSinceEpoch);
+	formattedTime = std::localtime(&timeSinceEpoch);
+	std::strftime(buffer, 80, "[%Y%m%d_%H%M%S] ", formattedTime);
+	std::cout << buffer;
 }
 
 void Account::displayAccountsInfos(void)
@@ -106,6 +119,7 @@ bool Account::makeWithdrawal(int withdrawal)
 	std::cout << "refused" << std::endl;
 	return (false);
 }
+
 int Account::checkAmount(void) const
 {
 	return (this->_amount);

@@ -6,7 +6,7 @@
 /*   By: rfinneru <rfinneru@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/03/21 13:16:26 by rfinneru      #+#    #+#                 */
-/*   Updated: 2024/03/21 15:19:54 by rfinneru      ########   odam.nl         */
+/*   Updated: 2024/03/21 15:31:07 by rfinneru      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ void	DirectInput(PhoneBook *MyPhoneBook, std::string input)
 	else if (input == "SEARCH")
 		doSearch(MyPhoneBook);
 	else if (input == "HELP")
-		std::cout << "remember you can do, ADD, SEARCH or EXIT!" << std::endl;
+		std::cout << "Remember you can do ADD, SEARCH or EXIT!" << std::endl;
 	else
 		std::cout << "Wrong input, please try again!" << std::endl;
 }
